@@ -8,9 +8,6 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 
-# Configure API key from environment variables
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
 # Streamlit UI setup
 st.subheader("Demo Chatbot - Amadeus - Ticket Reissue")
 
@@ -23,7 +20,8 @@ if 'requests' not in st.session_state:
 OPENAI_MODEL = "gpt-4-turbo"
 #OPENAI_MODEL = "gpt-3.5-turbo"
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+#openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 llm = ChatOpenAI(model_name=OPENAI_MODEL)
 
 # Check if buffer memory is initialized

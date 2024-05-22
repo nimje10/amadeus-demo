@@ -12,7 +12,8 @@ QUERY_REFINER_OPENAI_MODEL = "gpt-4-turbo"
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("OPENAI_API_KEY"),
+    #api_key=os.environ.get("OPENAI_API_KEY"),
+    api_key=st.secrets["OPENAI_API_KEY"],
 )
 
 def find_match(input_text):

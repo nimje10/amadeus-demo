@@ -1,5 +1,6 @@
 from pinecone import Pinecone
 from openai import OpenAI
+import streamlit as st
 
 client = OpenAI(
     #api_key="OPENAI_API_KEY"

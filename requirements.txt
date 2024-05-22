@@ -4,6 +4,7 @@ alabaster==0.7.12
 altair==5.1.1
 anaconda-client
 setuptools
+wheel
 annotated-types==0.5.0
 anyio==3.3.4
 appdirs==1.4.4

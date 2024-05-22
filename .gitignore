@@ -7,6 +7,9 @@ langchain_chatbot_env_3.12/lib/python3.12/site-packages/cv2/cv2.abi3.so
 langchain_chatbot_env_3.12/lib/python3.12/site-packages/pyarrow/libarrow.1600.dylib
 langchain_chatbot_env_3.12/lib/python3.12/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.so
 
+# ignore streamlit secrets
+.streamlit/secrets.toml
+
 # Ignore Python virtual environment
 /langchain_chatbot_env_3.12/
 

@@ -29,7 +29,18 @@ if 'buffer_memory' not in st.session_state:
     st.session_state.buffer_memory = ConversationBufferWindowMemory(k=3, return_messages=True)
 
 # Setup prompt templates
-system_msg_template = SystemMessagePromptTemplate.from_template(template="""You are an expert in using Amadeus product & provide very helpful support to all the travel agents who want to use Amadeus platform for managing travel related bookings.""")
+system_msg_template = SystemMessagePromptTemplate.from_template(template="""
+                                                                You are an expert in using Amadeus product & provide very helpful support to all the travel agents who want to use Amadeus platform for managing travel related bookings.
+                                                                While providing a response 
+                                                                * Be very concise in your answer & if possible try and provide the exact command that the travel agent can copy and use in his Amadeus Cryptic terminal
+                                                                * Provide an example with the answers whenever applicable
+                                                                * If the response contains steps to be followed by the agent, then ensure that the response is provided in a numbered list format.
+                                                                Sample Questions & Answers
+                                                                Q1: If the airline does not permit reissue or revalidation
+                                                                Ans. FQDDXBLHR/D (Departure Date)/R,(TIcket Issue Date)/AAI/CW
+                                                                Q2: What is the entry to update the total amount?
+                                                                Ans. TTK/T(Currency Code)(Amount) TTK is common identifier to update, T indicates Total and the 3 letter currency code and amount as applicable. Example: TTK/TUSD100 for USD as currency and 100 as amount
+                                                                """)
 
 human_msg_template = HumanMessagePromptTemplate.from_template(template="{input}")
 
@@ -52,7 +63,7 @@ with text_container:
             #st.write(refined_query)
             context = find_match(refined_query)  # Ensure this function is handling errors properly
             try:
-                response = conversation.predict(input=f"Context:\n{context}\n\nQuery:\n{query}") #Change this to query if you dont want to use the refined query
+                response = conversation.predict(input=f"Context:\n{context}\n\nQuery:\n{refined_query}") #Change this to query if you dont want to use the refined query
                 st.session_state.requests.append(query)
                 st.session_state.responses.append(response)
             except Exception as e:

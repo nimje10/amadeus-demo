@@ -45,40 +45,6 @@ def find_match(input_text):
         return f"Error generating embeddings or querying index: {str(e)}"
 
 
-# def find_match(input_text):
-#     # Securely load OpenAI API key from environment variables
-#     openai.api_key = os.getenv('OPENAI_API_KEY')
-
-#     # Replace the SentenceTransformer with OpenAIEmbeddings
-#     # model = SentenceTransformer('all-MiniLM-L6-v2') # Old line
-#     model = OpenAIEmbeddings(model_kwargs={'model_name': "ada"})
-#     # Setting up Pinecone
-#     PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')  # It's also good to keep API keys out of the code
-#     pc = Pinecone(api_key=PINECONE_API_KEY)
-#     index_name = "amadeus-chat"
-#     index = pc.Index(name=index_name)
-#     input_em = model.encode(input_text).tolist()  # Ensure encode is the correct method if using OpenAIEmbeddings
-#     result = index.query(input_em, top_k=2)
-#     if len(result['matches']) > 1:
-#         return "\n".join([match['metadata']['text'] for match in result['matches']])
-#     else:
-#         return "No sufficient matches found."
-
-# def query_refiner(conversation, query):
-#     # Updated API usage as per the latest documentation
-#     try:
-#         response = openai.Completion.create(
-#             model="text-davinci-003",
-#             prompt=f"Given the following user query and conversation log, formulate a question that would be the most relevant to provide the user with an answer from a knowledge base.\n\nCONVERSATION LOG: \n{conversation}\n\nQuery: {query}\n\nRefined Query:",
-#             temperature=0.7,
-#             max_tokens=256,
-#             top_p=1.0,
-#             frequency_penalty=0,
-#             presence_penalty=0
-#         )
-#         return response.choices[0].text.strip()
-#     except Exception as e:
-#         return f"Error in refining query: {str(e)}"
     
 def query_refiner(conversation, query):
     try:
